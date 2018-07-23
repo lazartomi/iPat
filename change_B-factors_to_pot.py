@@ -14,13 +14,9 @@ if __name__ == "__main__":
 	
 	pdbname = "3r2x"
 	chain = 'C'
-	potfilename = "/home/tomi/workspace/FinalScom/out_T50_10-12_ultimate_pot.txt"
-	#potfilename = "/home/tomi/workspace/FinalScom/Conf_changes/Z_2O3B/unbound/out_unb_Z2O3B_10-12_ultimate_pot.txt"
-	#potfilename = "/home/tomi/workspace/FinalScom/Conf_changes/Z_2O3B/bound/out_Z_2O3B_10-12_ultimate_pot.txt"
-	pdbfilename = "/home/tomi/workspace/FinalScom/T50_files/"+pdbname+".pdb1"	
-	#pdbfilename = "/home/tomi/workspace/FinalScom/Conf_changes/Z_2O3B/bound/"+pdbname+".pdb1"
-	#pdbfilename = "/home/tomi/workspace/FinalScom/Conf_changes/Z_2O3B/unbound/"+pdbname+"_"+chain+".pdb"
-	outfilename = "/home/tomi/workspace/FinalScom/"+pdbname+"_"+chain+"_pot_ultimate.pdb"
+	potfilename = "/home/.../out_test_pot.txt"
+	pdbfilename = "/home/.../"+pdbname+".pdb1"	
+	outfilename = "/home/.../"+pdbname+"_"+chain+"_pot.pdb"
 	
 	str_buried = "-10.00"
 	potmap = {}
