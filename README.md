@@ -30,15 +30,13 @@ This script has no dependencies.
 
 # Example of usage:
 
-pdb_ids.txt
+pdb_ids.txt --> put the PDB IDs of your structures in this file (one per line) e.g. 3ZIW
 
-// put the PDB IDs of your structures in this file (one per line) e.g. 3ZIW
-
-// you can do it like with nano text editor in command line:
+You can do it like with nano text editor in command line:
 
 > nano pdb_ids.txt
 
-// now run the calc_properties.py script:
+Now run the calc_properties.py script:
 
 > python calc_properties.py
 
