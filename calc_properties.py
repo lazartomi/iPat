@@ -85,7 +85,7 @@ def calc_accessibility(filename, chains, pdbcode):
 	stridefile.close()
 
 	for chain in chains:
-		if os.path.isfile("PDBSelect_files/" + pdbcode + "_" + chain+ ".str") == False:
+		if os.path.isfile("PDB_files/" + pdbcode + "_" + chain+ ".str") == False:
 			return surface, interface, intf_core;
 		stridefile = open(filename[0 : len(filename)-5] + "_" + chain + ".str", 'r')
 		for line2 in stridefile:
@@ -215,7 +215,7 @@ for line in infile:
 	line = line.strip()
 	if len(line) == 4:
 		pdbcode = line
-		if os.path.isfile("PDBSelect_files/" + line + ".pdb1") == False:
+		if os.path.isfile("PDB_files/" + line + ".pdb1") == False:
 			try:
 				os.system("wget -nv https://files.rcsb.org/download/" + line + ".pdb1.gz")
 			except:
@@ -223,25 +223,25 @@ for line in infile:
 			if os.path.isfile(line + ".pdb1.gz") == False:
 				filestoskip.write(line + "\n")
 				continue;
-			os.system("mv " + line + ".pdb1.gz PDBSelect_files/")
-			os.system("gunzip PDBSelect_files/" + line + ".pdb1.gz")
-		complexfile = open("PDBSelect_files/" + line + ".pdb1", 'r')
+			os.system("mv " + line + ".pdb1.gz PDB_files/")
+			os.system("gunzip PDB_files/" + line + ".pdb1.gz")
+		complexfile = open("PDB_files/" + line + ".pdb1", 'r')
 		lins = complexfile.readlines()
 		is_xray = False
 		chains = []
-		num_chains = len([name for name in os.listdir("PDBSelect_files") if name.startswith(line+'_') and os.path.isfile(os.path.join("PDBSelect_files", name))])
+		num_chains = len([name for name in os.listdir("PDB_files") if name.startswith(line+'_') and os.path.isfile(os.path.join("PDB_files", name))])
 		if num_chains <= 1:
-			chains, is_xray = createUnbounds("PDBSelect_files/" + line + ".pdb1")
+			chains, is_xray = createUnbounds("PDB_files/" + line + ".pdb1")
 		else:
-			chains, is_xray = getChains("PDBSelect_files/" + line + ".pdb1")
+			chains, is_xray = getChains("PDB_files/" + line + ".pdb1")
 		if is_xray == True and len(chains) > 1:
 			if num_chains <= 1:
-				create_strides("PDBSelect_files/" + line + ".pdb1", chains)
+				create_strides("PDB_files/" + line + ".pdb1", chains)
 			outfile2.write(pdbcode + "\n")
 			surface = []
 			interface = []
 			intf_core = []
-			surface, interface, intf_core = calc_accessibility("PDBSelect_files/" + line + ".pdb1", chains, pdbcode)
+			surface, interface, intf_core = calc_accessibility("PDB_files/" + line + ".pdb1", chains, pdbcode)
 			if len(surface) == 0 and len(interface) == 0 and len(intf_core)	== 0:
 				continue;
 			aa_prop = []
