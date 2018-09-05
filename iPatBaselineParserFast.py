@@ -110,7 +110,7 @@ def generate_baseline(c1, c2, c3,  cI1, cI2, cI3):
 
 if __name__ == "__main__":
     
-    filename = "/home/.../out_pdbselect_compl_10-12_ultimate.txt"
+    filename = "out_pdb_10-12A.txt"
     infile = open(filename, 'r')
     composition1 = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
     composition2 = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
