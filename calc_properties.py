@@ -203,8 +203,8 @@ def getDist(coordx, coordy, coordz, coordx2, coordy2, coordz2):
 radii = [10.0, 11.0, 12.0]
 rad1 = str(int(radii[0]))
 rad3 = str(int(radii[2]))
-outfile = open("out_pdbselect_compl_"+rad1+"-"+rad3+"_ultimate.txt", 'w')
-outfile2 = open("out_pdbselect_compl_"+rad1+"-"+rad3+"_ultimate.txt.out", 'w')
+outfile = open("out_pdb_"+rad1+"-"+rad3+"A.txt", 'w')
+outfile2 = open("out_pdb_"+rad1+"-"+rad3+"A.txt.out", 'w')
 
 infile = open("pdb_ids.txt", 'r')
 property_dict = {'ALA':'H','LEU':'H','MET':'H','PHE':'H','PRO':'H','TYR':'H','TRP':'H','ILE':'H','VAL':'H','ASN':'P','CYS':'P','GLN':'P','SER':'P','THR':'P','GLY':'P','ARG':'+','LYS':'+','HIS':'+','ASP':'-','GLU':'-'}				
