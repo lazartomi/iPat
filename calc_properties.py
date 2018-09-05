@@ -117,24 +117,6 @@ def getRelASA(asa, aa):
 	return (asa / tripeptASA[ aa ] );
 
 
-
-def is_small_structure(lins, pdbcode):
-	boolean = False;
-	chain_length = 0;
-	for line in lins:
-		if (line[0:4] == "ATOM" or line [0:6] == "HETATM") and line[77:78] == 'C':
-			if line[13:15] == "CA":
-				chain_length += 1
-		elif line[0:3] == "TER":
-			if chain_length < 40: # and not in list
-				os.system("rm PDBSelect_files/" + pdbcode + "*")
-				boolean = True
-				break;
-			chain_length = 0
-	#print pdbcode, chain_length, boolean
-	return boolean;
-
-
 def properties_around(pdbcode, lins, radii, surface, interface, intf_core, property_dict):	
 	aminoacids = ['PHE','ILE','LEU','VAL','PRO','ALA','GLY','MET','CYS','TRP','TYR','THR','SER','GLN','ASN','GLU','ASP','HIS','LYS','ARG']
 	aa_prop = []
@@ -223,27 +205,16 @@ rad1 = str(int(radii[0]))
 rad3 = str(int(radii[2]))
 outfile = open("out_pdbselect_compl_"+rad1+"-"+rad3+"_ultimate.txt", 'w')
 outfile2 = open("out_pdbselect_compl_"+rad1+"-"+rad3+"_ultimate.txt.out", 'w')
-filestoskip = open("filesnotavailable.txt", 'r')
-infile = open("pdbselect_pdb_ids_nonredund.txt", 'r')
+
+infile = open("pdb_ids.txt", 'r')
 property_dict = {'ALA':'H','LEU':'H','MET':'H','PHE':'H','PRO':'H','TYR':'H','TRP':'H','ILE':'H','VAL':'H','ASN':'P','CYS':'P','GLN':'P','SER':'P','THR':'P','GLY':'P','ARG':'+','LYS':'+','HIS':'+','ASP':'-','GLU':'-'}				
-capsids = ["1AUY", "1FR5", "1STM", "2TBV", "3S6P", "4SBV", "4V5T", "4V86", "4V5T", "4V4M"]
-crystalContacts = ["1a12","1a3y","1a7t","1ag9","1aq0","1atl","1bc2","1bkz","1c02","1cki","1dsu","1dys","1elp","1epa","1fgk","1fvk","1gar","1hrn","1hsl","1ihb","1ilr","1kpt","1mss","1nmt","1ome","1qha","1qpa","1rb3","1rge","1sw6","1the","1tht","1trn","1vlz","1xca","1xgs","2bls","2g3p","2scp","3lvd","3mg1"]
-dnaProtDimer = ["1DP7"]
-listtoskip = []
-for line0 in filestoskip:
-	line0 = line0.strip()
-	if len(line0) == 4:
-		listtoskip.append(line0)
-filestoskip.close()
+
 filestoskip = open("filesnotavailable.txt", 'a')
 
 for line in infile:
 	line = line.strip()
 	if len(line) == 4:
 		pdbcode = line
-		if line in capsids or line.lower() in crystalContacts or line in dnaProtDimer or line in listtoskip:
-			continue;
-
 		if os.path.isfile("PDBSelect_files/" + line + ".pdb1") == False:
 			try:
 				os.system("wget -nv https://files.rcsb.org/download/" + line + ".pdb1.gz")
@@ -256,8 +227,6 @@ for line in infile:
 			os.system("gunzip PDBSelect_files/" + line + ".pdb1.gz")
 		complexfile = open("PDBSelect_files/" + line + ".pdb1", 'r')
 		lins = complexfile.readlines()
-		if is_small_structure(lins, pdbcode) == True:
-			continue;
 		is_xray = False
 		chains = []
 		num_chains = len([name for name in os.listdir("PDBSelect_files") if name.startswith(line+'_') and os.path.isfile(os.path.join("PDBSelect_files", name))])
