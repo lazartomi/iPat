@@ -1,3 +1,7 @@
+#
+#
+import sys
+
 def format_pot(double):
 	double10 = double*1
 	string = str(double10)
@@ -12,11 +16,12 @@ def format_pot(double):
 
 if __name__ == "__main__":
 	
-	pdbname = "3r2x"
-	chain = 'C'
-	potfilename = "/home/.../out_test_pot.txt"
-	pdbfilename = "/home/.../"+pdbname+".pdb1"	
-	outfilename = "/home/.../"+pdbname+"_"+chain+"_pot.pdb"
+	pdbfile = sys.argv[1]
+	pdbname = pdbfile[0:4]
+	chain = sys.argv[2]
+	potfilename = "out_pdb_10-12A_pot.txt"
+	pdbfilename = "PDB_files/"+pdbfile
+	outfilename = "PDB_files/"+pdbname+"_"+chain+"_pot.pdb"
 	
 	str_buried = "-10.00"
 	potmap = {}
