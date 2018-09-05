@@ -39,11 +39,13 @@ You can do it like with nano text editor in command line:
 Create a folder called "PDB_files" in your working directory in which you want to put your structures. If you have the structure downloaded, copy the structure into this folder. In case you don't have it, the script will try to download it from RCSB PDB. You can do these operations from command line too:
 
 > mkdir PDB_files
+
 > cp /whatever.../3ZIW.pdb PDB_files/
 
 Now run the calc_properties.py and localPotentialQuick.py scripts:
 
 > python calc_properties.py
+
 > python localPotentialQuick.py
 
 For each structures you want to visualize call the change_B-factors_to_pot.py script with the PDB file and the chain name arguments:
