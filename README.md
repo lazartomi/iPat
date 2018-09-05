@@ -7,7 +7,7 @@ Script desciptions:
 calc_properties.py
 
 This script enables to recaluclate the physicochemical patterning preferences for interfaces and non-interfaces for a given dataset. The input is a list of PDB id codes in a simple text file (the structures will be use automatically downloaded). The output is a flat file with rows summarizing how many properties of which type can be found around a given residue in a structure.
-Dependencies: python modules: os, numpy, re + STRIDE
+Dependencies: python modules: os, numpy, re + STRIDE + (wget)
 
 
 iPatBaselineParserFast.py
@@ -36,7 +36,20 @@ You can do it like with nano text editor in command line:
 
 > nano pdb_ids.txt
 
-Now run the calc_properties.py script:
+Create a folder called "PDB_files" in your working directory in which you want to put your structures. If you have the structure downloaded, copy the structure into this folder. In case you don't have it, the script will try to download it from RCSB PDB. You can do these operations from command line too:
+
+> mkdir PDB_files
+> cp /whatever.../3ZIW.pdb PDB_files/
+
+Now run the calc_properties.py and localPotentialQuick.py scripts:
 
 > python calc_properties.py
+> python localPotentialQuick.py
 
+For each structures you want to visualize call the change_B-factors_to_pot.py script with the PDB file and the chain name arguments:
+
+> python change_B-factors_to_pot.py 3ZIW.pdb A
+
+You can find the output in the PDB_files/ folder called PDBcode_chain_pot.pdb --> e.g. 3ZIW_A_pot.pdb
+
+This file can be opened by protein molecule viewers that can visualize B-factors. The higher the potential of the surface residue, the more its physicochemical pattern indicates that it participates in protein-protein interactions. Buried residues get a score of -10.00, when choosing the color scale for visualization, there is no need to consider this value, scale can go from -1.11 to 0.47. The exact potential values for each protein chain can be found in the out_pdb_10-12A.txt file.
