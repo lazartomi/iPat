@@ -914,9 +914,9 @@ def calcPot(radius, type, H, P, p, n):
 
 if __name__ == "__main__":
     
-    infilename = '/home/tomi/workspace/FinalScom/out_pdbselect_compl_10-12_ultimate.txt'
+    infilename = 'out_pdb_10-12A.txt'
     infile = open(infilename, 'r')
-    outfilename = '/home/tomi/workspace/FinalScom/out_pdbselect_compl_10-12_ultimate_pot.txt'
+    outfilename = 'out_pdb_10-12A_pot.txt'
     outfile = open(outfilename, 'w')
     
     for line in infile:
